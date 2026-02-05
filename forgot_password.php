@@ -2,7 +2,7 @@
 session_start();
 
 // Database connection parameters
-$servername = "localhost";
+$servername = "localhost:3307";
 $db_username = "root";
 $db_password = ""; // Leave blank if there is no password
 $dbname = "transportation_ms"; // Database name

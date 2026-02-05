@@ -1,58 +1,43 @@
 <?php
-if (!isset($_SESSION)) {
-    session_start();
-}
+session_start();
 
-
-$connection = mysqli_connect('localhost', 'root', '', 'transportation_ms');
+$connection = mysqli_connect('localhost:3307', 'root', '', 'transportation_ms');
 $msg = "";
 
-
 if (isset($_POST['submit'])) {
+
     $drname = $_POST['drname'];
     $drjoin = $_POST['drjoin'];
     $drmobile = $_POST['drmobile'];
-    $drid = $_POST['drid'];
     $drlicense = $_POST['drlicense'];
     $drlicensevalid = $_POST['drlicensevalid'];
     $draddress = $_POST['draddress'];
-    //$drphoto=$_FILES['file']['name'];
     $drphoto = $_FILES['file']['name'];
 
-    //image Upload
+    // Upload image
+    move_uploaded_file($_FILES['file']['tmp_name'], "picture/" . $drphoto);
 
-    move_uploaded_file($_FILES['file']['tmp_name'], "picture" . $_FILES['file']['name']);
-
-    $res = false;
-    $insert_query = "INSERT INTO `driver`(`driverid`, `drname`, `drjoin`, `drmobile`, `drid`, `drlicense`, `drlicensevalid`, `draddress`, `drphoto`) VALUES ('','$drname','$drjoin','$drmobile','$drid','$drlicense','$drlicensevalid','$draddress','$drphoto')";
+    $insert_query = "
+        INSERT INTO driver
+        (drname, drjoin, drmobile, drlicense, drlicensevalid, draddress, drphoto, dr_available)
+        VALUES
+        ('$drname', '$drjoin', '$drmobile', '$drlicense', '$drlicensevalid', '$draddress', '$drphoto', 'Yes')
+    ";
 
     $res = mysqli_query($connection, $insert_query);
 
-    if ($res == true) {
-        $msg = "<script language='javascript'>
-                                       swal(
-                                            'Success!',
-                                            'Registration Completed!',
-                                            'success'
-                                            );
-				          </script>";
-        header("Location: " . $_SERVER['PHP_SELF']); // Redirect to the same page to prevent form resubmission
+    if ($res) {
+        $_SESSION['msg'] = "<script>
+            swal('Success!', 'Driver Added Successfully!', 'success');
+        </script>";
+        header("Location: " . $_SERVER['PHP_SELF']);
         exit;
     } else {
-        die('unsuccessful' . mysqli_error($connection));
-    }
-
-    if (isset($_SESSION['msg'])) {
-        $msg = $_SESSION['msg'];
-        unset($_SESSION['msg']);
+        die("Error: " . mysqli_error($connection));
     }
 }
-
-
-
-
-
 ?>
+
 <!doctype html>
 
 <html lang="en">
@@ -163,7 +148,7 @@ if (isset($_POST['submit'])) {
                             <a href="newdriver.php"> Add New Driver</a>
                         </li>
                         <li>
-                            <a href="indexbill.php"> Billing</a>
+                            <a href="bill.php"> Billing</a>
                         </li>
                         <li>
                             <a href="bookingvlist.php"> Booking </a>
@@ -212,14 +197,14 @@ if (isset($_POST['submit'])) {
                         <li class="nav-item dropdown">
                             <div class="nav-dropdown">
                                 <a href="#" id="nav2" class="nav-item nav-link dropdown-toggle text-secondary" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fas fa-user"></i> <span><?php echo $_SESSION['admin_email']; ?></span> <i style="font-size: .8em;" class="fas fa-caret-down"></i>
+                                    <i class="fas fa-user"></i> <span><?php echo $_SESSION['admin_username']; ?></span> <i style="font-size: .8em;" class="fas fa-caret-down"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end nav-link-menu">
                                     <ul class="nav-list">
                                         <li><a href="" class="dropdown-item"><i class="fas fa-address-card"></i> Profile</a></li>
                                         <li><a href="" class="dropdown-item"><i class="fas fa-cog"></i> Settings</a></li>
                                         <div class="dropdown-divider"></div>
-                                        <li><a href="http://localhost/Transportation%20MS/logout.php" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                                        <li><a href="http://localhost:3307/Transportation%20MS/logout.php" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                                     </ul>
                                 </div>
                             </div>

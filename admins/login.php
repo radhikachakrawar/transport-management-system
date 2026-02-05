@@ -1,46 +1,44 @@
 <?php
 session_start();
-$servername = "localhost";
-$username = "root";
-$password = "";
+
+$servername = "localhost:3307";
+$db_username = "root";
+$db_password = "";
 $dbname = "transportation_ms";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
+$conn = new mysqli($servername, $db_username, $db_password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+$error = "";
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = trim($_POST['email']);
-    $password = trim($_POST['password']);
-    $username = trim($_POST['username']);
 
-    // Debug: Print the input values
-    echo "Email: $email<br>";
-    echo "Password: $password<br>";
+    $username = trim($_POST['username'] ?? '');
+    $password = trim($_POST['password'] ?? '');
 
-    // Prepare and bind
-    $stmt = $conn->prepare("SELECT id,username FROM admins WHERE email = ? AND password = ?");
-    $stmt->bind_param("ss", $email, $password);
+   $stmt = $conn->prepare(
+    "SELECT id, username FROM admins WHERE BINARY username = ? AND BINARY password = ?"
+);
+$stmt->bind_param("ss", $username, $password);
+$stmt->execute();
+$stmt->store_result();
 
-    // Execute and check result
-    $stmt->execute();
-    $stmt->store_result();
+    if ($stmt->num_rows === 1) {
 
-    // Debug: Print the number of rows
-    echo "Number of rows: " . $stmt->num_rows . "<br>";
+        $stmt->bind_result($id, $admin_username);
+        $stmt->fetch();
 
-    if ($stmt->num_rows == 0) {
-        $_SESSION['admin_loggedin'] = true; // Separate session variable for admin
-        $_SESSION['admin_email'] = $email;
-        $_SESSION['username'] = $username;
-        header("Location: admin1\index.php");
+        $_SESSION['admin_loggedin'] = true;
+        $_SESSION['admin_id'] = $id;
+        $_SESSION['admin_username'] = $admin_username;
+
+
+        header("Location: admin1/index.php");
         exit();
     } else {
-        echo "Invalid email or password";
+        $error = "Invalid username or password";
     }
 
     $stmt->close();
@@ -49,61 +47,76 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $conn->close();
 ?>
 
-
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Admin Login | Transportation MS</title>
-    <link href="admin1/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="admin1/assets/css/auth.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Admin Login</title>
     <style>
-        .wrapper{
-            background-image: url('vehicle-home.jpg');
-            background-repeat: no-repeat;
-            background-size: cover;
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+        }
+        .login-container {
+            width: 350px;
+            margin: 100px auto;
+        }
+        .login-form {
+            background: #fff;
+            padding: 25px;
+            border-radius: 6px;
+            box-shadow: 0 0 10px rgba(0,0,0,.1);
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        .error {
+            color: red;
+            margin-bottom: 10px;
         }
     </style>
 </head>
-
 <body>
-    <div class="wrapper">
-        <div class="auth-content">
-            <div class="card">
-                <div class="card-body text-center">
-                    <div class="mb-4">
-                        <img class="brand" src="admin1/assets/img/tms.png" alt="bootstraper logo">
-                    </div>
-                    <h6 class="mb-4 text-muted">Login to your account</h6>
-                    <form action="" method="POST">
-                        <div class="mb-3 text-start">
-                            <label for="email" class="form-label">Email address</label>
-                            <input type="email" class="form-control" name="email" placeholder="Enter Email" required>
-                        </div>
-                        <div class="mb-3 text-start">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" name="password" placeholder="Password" required>
-                        </div>
-                        <div class="mb-3 text-start">
-                            <div class="form-check">
-                              <input class="form-check-input" name="remember" type="checkbox" value="" id="check1">
-                              <label class="form-check-label" for="check1">
-                                Remember me on this device
-                              </label>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary shadow-2 mb-4">Login</button>
-                    </form>
-                    <p class="mb-2 text-muted">Forgot password? <a href="forgot-password.html">Reset</a></p>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-    <script src="admin1/assets/vendor/jquery/jquery.min.js"></script>
-    <script src="admin1/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-</body>
 
+<div class="login-container">
+    <div class="login-form">
+        <h2>Admin Login</h2>
+
+        <?php if ($error): ?>
+            <div class="error"><?php echo $error; ?></div>
+        <?php endif; ?>
+
+        <form method="POST">
+            <div class="input-group">
+                <label>Username</label>
+                <input type="text" name="username" required>
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" name="password" required>
+            </div>
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</div>
+
+</body>
 </html>

@@ -3,12 +3,12 @@ session_start();
 
 if (!isset($_SESSION['admin_loggedin']) || $_SESSION['admin_loggedin'] !== true) {
     // If the user is not logged in, redirect to the login page
-    header("Location: http://localhost/Transportation%20MS/admins/login.php");
+    header("Location: http://localhost:3307/Transportation%20MS/admins/login.php");
     exit();
 }
 
 // Database connection parameters
-$servername = "localhost";
+$servername = "localhost:3307";
 $username = "root";
 $password = "";
 $dbname = "transportation_ms";
@@ -89,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_admin'])) {
                             <div class="nav-dropdown">
                                 <a href="#" id="nav2" class="nav-item nav-link dropdown-toggle text-secondary"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fas fa-user"></i> <span><?php echo $_SESSION['admin_email']; ?></span> <i
+                                    <i class="fas fa-user"></i> <span><?php echo $_SESSION['admin_username']; ?></span> <i
                                         style="font-size: .8em;" class="fas fa-caret-down"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end nav-link-menu">
@@ -99,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_admin'])) {
                                         <li><a href="" class="dropdown-item"><i class="fas fa-cog"></i> Settings</a>
                                         </li>
                                         <div class="dropdown-divider"></div>
-                                        <li><a href="http://localhost/Transportation%20MS/logout.php"
+                                        <li><a href="http://localhost:3307/Transportation%20MS/logout.php"
                                                 class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a>
                                         </li>
                                     </ul>

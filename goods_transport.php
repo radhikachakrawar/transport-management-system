@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_loggedin']) || $_SESSION['user_loggedin'] !== true ||
 }
 
 // Database connection
-$servername = "localhost";
+$servername = "localhost:3307";
 $username = "root";
 $password = "";
 $dbname = "transportation_ms";
@@ -59,7 +59,7 @@ if ($conn->connect_error) {
             $status = 'Pending'; // Default status
         
             // Database connection
-            $conn = new mysqli('localhost', 'root', '', 'transportation_ms');
+            $conn = new mysqli('localhost:3307', 'root', '', 'transportation_ms');
 
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);

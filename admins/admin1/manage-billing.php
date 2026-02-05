@@ -1,6 +1,6 @@
 <?php
  session_start();
- $conn = new mysqli('localhost', 'root', '', 'transportation_ms');
+ $conn = new mysqli('localhost:3307', 'root', '', 'transportation_ms');
 
  if ($conn->connect_error) {
      die("Connection failed: " . $conn->connect_error);
@@ -70,7 +70,7 @@
                             <a href="newdriver.php"> Add New Driver</a>
                         </li>
                         <li>
-                            <a href="indexbill.php"> Billing</a>
+                            <a href="bill.php"> Billing</a>
                         </li>
                         <li>
                             <a href="bookingvlist.php"> Booking </a>
@@ -119,14 +119,14 @@
                         <li class="nav-item dropdown">
                             <div class="nav-dropdown">
                                 <a href="#" id="nav2" class="nav-item nav-link dropdown-toggle text-secondary" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fas fa-user"></i> <span><?php echo $_SESSION['admin_email']; ?></span> <i style="font-size: .8em;" class="fas fa-caret-down"></i>
+                                    <i class="fas fa-user"></i> <span><?php echo $_SESSION['admin_username']; ?></span> <i style="font-size: .8em;" class="fas fa-caret-down"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end nav-link-menu">
                                     <ul class="nav-list">
                                         <li><a href="" class="dropdown-item"><i class="fas fa-address-card"></i> Profile</a></li>
                                         <li><a href="" class="dropdown-item"><i class="fas fa-cog"></i> Settings</a></li>
                                         <div class="dropdown-divider"></div>
-                                        <li><a href="http://localhost/Transportation%20MS/logout.php" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                                        <li><a href="http://localhost:3307/Transportation%20MS/logout.php" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                                     </ul>
                                 </div>
                             </div>

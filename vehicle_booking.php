@@ -1,15 +1,18 @@
 <?php
 session_start();
 
-// Check if the user is logged in
-if (!isset($_SESSION['user_loggedin']) || $_SESSION['user_loggedin'] !== true || !isset($_SESSION['user_id'])) {
-    // If the user is not logged in, redirect to the login page
+if (
+    (!isset($_SESSION['user_loggedin']) || $_SESSION['user_loggedin'] !== true)
+    && 
+    (!isset($_SESSION['admin_loggedin']) || $_SESSION['admin_loggedin'] !== true)
+) {
     header("Location: login-signup.php");
     exit();
 }
 
+
 // Database connection
-$servername = "localhost";
+$servername = "localhost:3307";
 $username = "root";
 $password = "";
 $dbname = "transportation_ms";

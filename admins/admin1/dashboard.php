@@ -4,11 +4,11 @@ session_start();
 
 if (!isset($_SESSION['admin_loggedin']) || $_SESSION['admin_loggedin'] !== true) {
     // If the user is not logged in, redirect to the login page
-    header("Location: http://localhost/Transportation%20MS/admins/login.php");
+    header("Location: http://localhost:3307/Transportation%20MS/admins/login.php");
     exit();
 }
 
-$servername = "localhost"; // Your database server
+$servername = "localhost:3307"; // Your database server
 $username = "root"; // Your database username
 $password = ""; // Your database password
 $dbname = "transportation_ms"; // Your database name
@@ -25,7 +25,7 @@ if ($conn->connect_error) {
 // Fetch booking counts
 $busBookingsCount = $conn->query("SELECT COUNT(*) AS count FROM bookings")->fetch_assoc()['count'];
 $vehicleBookingsCount = $conn->query("SELECT COUNT(*) AS count FROM booking")->fetch_assoc()['count'];
-$logisticBookingsCount = $conn->query("SELECT COUNT(*) AS count FROM logibookings")->fetch_assoc()['count'];
+$logisticBookingsCount = $conn->query("SELECT COUNT(*) AS count FROM bookings")->fetch_assoc()['count'];
 
 $allBookingsCount = $busBookingsCount + $vehicleBookingsCount + $logisticBookingsCount;
 
@@ -130,14 +130,14 @@ $conn->close();
                         <li class="nav-item dropdown">
                             <div class="nav-dropdown">
                                 <a href="#" id="nav2" class="nav-item nav-link dropdown-toggle text-secondary" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fas fa-user"></i> <span><?php echo $_SESSION['admin_email']; ?></span> <i style="font-size: .8em;" class="fas fa-caret-down"></i>
+                                    <i class="fas fa-user"></i> <span><?php echo $_SESSION['admin_username']; ?></span> <i style="font-size: .8em;" class="fas fa-caret-down"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end nav-link-menu">
                                     <ul class="nav-list">
                                         <li><a href="" class="dropdown-item"><i class="fas fa-address-card"></i> Profile</a></li>
                                         <li><a href="" class="dropdown-item"><i class="fas fa-cog"></i> Settings</a></li>
                                         <div class="dropdown-divider"></div>
-                                        <li><a href="http://localhost/Transportation%20MS/logout.php" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                                        <li><a href="../../logout.php" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                                     </ul>
                                 </div>
                             </div>

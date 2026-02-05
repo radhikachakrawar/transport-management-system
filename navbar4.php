@@ -236,12 +236,14 @@
                         </button>
                     </form>
                 <?php else: ?>
-                    <button id="nav-login-signup" name="login-signup" type="button" class="thq-button-filled">
-                        <span>Login/Sign Up</span>
-                    </button>
-                    <button id="admin-login" name="admin-login" type="button" class="admin-login thq-button-filled">
-                        <span>Admin Login</span>
-                    </button>
+                    <a href="login-signup.php" class="thq-button-filled" style="text-decoration:none;">
+    <span>Login / Sign Up</span>
+</a>
+
+                   <a href="admins/login.php" class="admin-login thq-button-filled">
+    <span>Admin Login</span>
+</a>
+
                 <?php endif; ?>
             </div>
         </div>
