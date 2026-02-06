@@ -26,23 +26,7 @@ This project is a Transportation Management System designed to streamline and ma
 - User authentication
 - Responsive design
 
-## Installation
 
-To set up the project locally:
-
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/PiyushChauhan3/Transporataion-Management-System-php.git
-
-2. Navigate to the project directory:
-   ```sh
-   cd Transporataion-Management-System-php
-   
-3. Set up your local server (e.g., XAMPP, WAMP) and place the project folder in the server's root directory (e.g., htdocs for XAMPP).
-   
-4. Create a database in your local server and import the provided SQL file (database.sql) located in the project folder.
-   
-5. Update the database configuration in config.php to match your local server settings.
    
 ## Usage
 

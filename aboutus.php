@@ -255,27 +255,27 @@ if (!isset($_SESSION['user_loggedin']) || $_SESSION['user_loggedin'] !== true) {
                 <div class="team-list">
                     <div class="team-member">
                         <img src="team-member.jpg" alt="Team Member 1" class="team-photo">
-                        <h3 class="team-name">Preet Kasodariya </h3>
+                        <h3 class="team-name">Preeti </h3>
                         <p class="team-role">CEO</p>
                     </div>
                     <div class="team-member">
                         <img src="team-member.jpg" alt="Team Member 1" class="team-photo">
-                        <h3 class="team-name">Het Moradiya </h3>
+                        <h3 class="team-name">Rohini</h3>
                         <p class="team-role">CEO</p>
                     </div>
                     <div class="team-member">
                         <img src="team-member.jpg" alt="Team Member 1" class="team-photo">
-                        <h3 class="team-name">Piyush Chauhan</h3>
+                        <h3 class="team-name">Radhika </h3>
                         <p class="team-role">CEO</p>
                     </div>
                     <div class="team-member">
                         <img src="team-member.jpg" alt="Team Member 2" class="team-photo">
-                        <h3 class="team-name">Prince Parmar </h3>
+                        <h3 class="team-name">Manish</h3>
                         <p class="team-role">CEO</p>
                     </div>
                     <div class="team-member">
                         <img src="team-member.jpg" alt="Team Member 3" class="team-photo">
-                        <h3 class="team-name">Hathiwala Mohammed Adil </h3>
+                        <h3 class="team-name">Divya</h3>
                         <p class="team-role">CEO</p>
                     </div>
                 </div>
