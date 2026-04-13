@@ -1,5 +1,5 @@
 <?php
-$connection = mysqli_connect('localhost:3307', 'root', '', 'transportation_ms');
+$connection = mysqli_connect('localhost', 'root', '', 'transportation_ms');
 if (!$connection) {
     die("Database connection failed: " . mysqli_connect_error());
 }

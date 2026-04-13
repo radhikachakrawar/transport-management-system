@@ -9,7 +9,7 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
     // Database connection
-    $conn = new mysqli('localhost:3307', 'root', '', 'transportation_ms');
+    $conn = new mysqli('localhost', 'root', '', 'transportation_ms');
 
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);

@@ -4,11 +4,11 @@ session_start();
 
 if (!isset($_SESSION['admin_loggedin']) || $_SESSION['admin_loggedin'] !== true) {
     // If the user is not logged in, redirect to the login page
-    header("Location: http://localhost:3307/Transportation%20MS/admins/login.php");
+    header("Location: http://localhost/Transportation%20MS/admins/login.php");
     exit();
 }
 
-$servername = "localhost:3307"; // Your database server
+$servername = "localhost"; // Your database server
 $username = "root"; // Your database username
 $password = ""; // Your database password
 $dbname = "transportation_ms"; // Your database name

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$connection = mysqli_connect('localhost:3307', 'root', '', 'transportation_ms');
+$connection = mysqli_connect('localhost', 'root', '', 'transportation_ms');
 $msg = "";
 
 if (isset($_POST['submit'])) {
@@ -204,7 +204,7 @@ if (isset($_POST['submit'])) {
                                         <li><a href="" class="dropdown-item"><i class="fas fa-address-card"></i> Profile</a></li>
                                         <li><a href="" class="dropdown-item"><i class="fas fa-cog"></i> Settings</a></li>
                                         <div class="dropdown-divider"></div>
-                                        <li><a href="http://localhost:3307/Transportation%20MS/logout.php" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                                        <li><a href="http://localhost/Transportation%20MS/logout.php" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                                     </ul>
                                 </div>
                             </div>

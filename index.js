@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("nav-login-signup").addEventListener("click", function() {
-      window.location.href = "http://localhost:3307/Transportation%20MS//login-signup.php";
+      window.location.href = "http://localhost/Transportation%20MS//login-signup.php";
     });
 });
 
@@ -8,13 +8,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
 document.addEventListener("DOMContentLoaded", function() {
   document.getElementsByClassName("btn btn-primary btn-lg btn-block").addEventListener("click", function() {
-    window.location.href = "http://localhost:3307/Transportation%20MS/logout.php";
+    window.location.href = "http://localhost/Transportation%20MS/logout.php";
   });
 });
 
 document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("admin-login").addEventListener("click", function() {
-    window.location.href = "http://localhost:3307/Transportation%20MS/admins/login.php";
+    window.location.href = "http://localhost/Transportation%20MS/admins/login.php";
   });
 });
 

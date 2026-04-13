@@ -81,7 +81,10 @@ td {
 body {
     width: 100%;
     height: 100%;
-    background: #f4f6fa;
+    /* background: #f4f6fa; */
+    background: linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)),
+    url('../../../../picture/dashboard_bg.png') no-repeat center center fixed;
+    background-size: cover;
     font-family: "Lato", "Helvetica Neue", Arial, Helvetica, sans-serif;
     font-size: 1rem;
     color: #444;
@@ -165,6 +168,22 @@ body {
     line-height: 1.6;
 }
 
+.page-pretitle {
+    font-size: .8rem;
+    text-transform: uppercase;
+    line-height: 1.6;
+    color: #e8580a; /* ✅ Orange highlight */
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.page-title {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
 /*------------------------------------------------------------------
 [5. Sidebar / #sidebar] - see /components/sidebar/sidebar-default.css
 */
@@ -241,6 +260,17 @@ body {
     color: #a9a9a9;
 }
 
+.card {
+    margin-bottom: 15px;
+    box-shadow: 0 4px 15px rgba(232, 88, 10, 0.15);
+    border-radius: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(232, 88, 10, 0.25);
+}
 /*------------------------------------------------------------------
 [8. Miscellaneous ] 
 */
@@ -381,7 +411,8 @@ table.dataTable>tbody>tr.child ul.dtr-details {
 [10. Colors / .teal, .olive, .violet, .orange, .darkgray, .blue, .grey] 
 */
 .teal {
-    color: #00b5ad !important;
+    /* color: #00b5ad !important; */
+    color: #e8580a !important;
 }
 
 .olive {

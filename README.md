@@ -30,7 +30,7 @@ This project is a Transportation Management System designed to streamline and ma
    
 ## Usage
 
-To use the Transportation Management System, navigate to the project URL in your web browser (e.g., http://localhost:3307/Transporataion-Management-System-php) and log in with the provided credentials or create a new account.
+To use the Transportation Management System, navigate to the project URL in your web browser (e.g., http://localhost/Transporataion-Management-System-php) and log in with the provided credentials or create a new account.
 
 ## Screenshots
 ![2024-06-25_11-25-28-029](https://github.com/PiyushChauhan3/Transporataion-Management-System-php/assets/158813985/c25b6d72-ea52-40e2-8e14-efcb5301bd70)

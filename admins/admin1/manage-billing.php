@@ -1,6 +1,6 @@
 <?php
  session_start();
- $conn = new mysqli('localhost:3307', 'root', '', 'transportation_ms');
+ $conn = new mysqli('localhost', 'root', '', 'transportation_ms');
 
  if ($conn->connect_error) {
      die("Connection failed: " . $conn->connect_error);
@@ -126,7 +126,7 @@
                                         <li><a href="" class="dropdown-item"><i class="fas fa-address-card"></i> Profile</a></li>
                                         <li><a href="" class="dropdown-item"><i class="fas fa-cog"></i> Settings</a></li>
                                         <div class="dropdown-divider"></div>
-                                        <li><a href="http://localhost:3307/Transportation%20MS/logout.php" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                                        <li><a href="http://localhost/Transportation%20MS/logout.php" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                                     </ul>
                                 </div>
                             </div>

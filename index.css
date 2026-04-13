@@ -982,3 +982,127 @@
   align-items: center;
   justify-content: center;
 }
+
+/* ----------slider img css------- */
+
+/* ===== SLIDER ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.slider-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #000;
+}
+
+.slides-track {
+  display: flex;
+  width: 100%;
+  transition: transform 0.7s cubic-bezier(0.77, 0, 0.18, 1);
+}
+
+.slide {
+  min-width: 100%;
+  flex-shrink: 0;
+}
+
+.slide img {
+  width: 100%;
+  height: 911px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Gradient Overlay */
+.slider-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.10) 0%,
+    transparent 30%,
+    transparent 70%,
+    rgba(0,0,0,0.40) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Prev / Next Buttons */
+.s-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  background: rgba(0,0,0,0.45);
+  color: #fff;
+  border: 2px solid rgba(255,255,255,0.3);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.s-btn:hover {
+  background: #e8580a;
+  border-color: #e8580a;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.s-prev { left: 18px; }
+.s-next { right: 18px; }
+
+/* Dots */
+.s-dots {
+  position: absolute;
+  bottom: 18px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  z-index: 5;
+}
+
+.s-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.5);
+  border: 2px solid rgba(255,255,255,0.6);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.s-dot.active {
+  background: #e8580a;
+  border-color: #e8580a;
+  transform: scale(1.35);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .slide img {
+    height: 280px;
+  }
+  .s-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slide img {
+    height: 190px;
+  }
+}

@@ -12,7 +12,7 @@ if (
 
 
 // Database connection
-$servername = "localhost:3307";
+$servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "transportation_ms";

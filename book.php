@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json');
 
-$servername = "localhost:3307";
+$servername = "localhost";
 $username = "root"; // Change to your database username
 $password = ""; // Change to your database password
 $dbname = "transportation_ms";

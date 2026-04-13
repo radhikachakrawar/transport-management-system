@@ -1,5 +1,5 @@
 <?php
-$servername = "localhost:3307";
+$servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "transportation_ms";
@@ -164,7 +164,32 @@ session_start();
 
       <div class="home-hero2">
         <div class="hero3-header9">
-          <img alt="Transportation Management System" src="hero_img.png" class="thq-img-ratio-16-9" />
+          <!-- <img alt="Transportation Management System" src="hero_img.png" class="thq-img-ratio-16-9" /> -->
+           <!-- SLIDER -->
+<div class="slider-wrapper">
+  <div class="slides-track">
+    <div class="slide active">
+      <img src="hero_img.png" alt="Slide 1">
+    </div>
+    <div class="slide">
+      <img src="./picture/img3.jpg" alt="Slide 2">
+    </div>
+    <div class="slide">
+      <img src="./picture/img8.jpg" alt="Slide 3">
+    </div>
+  </div>
+
+  <!-- Buttons -->
+  <button class="s-btn s-prev">&#10094;</button>
+  <button class="s-btn s-next">&#10095;</button>
+
+  <!-- Dots -->
+  <div class="s-dots">
+    <span class="s-dot active"></span>
+    <span class="s-dot"></span>
+    <span class="s-dot"></span>
+  </div>
+</div>
           <div class="hero3-content thq-section-padding">
             <div class="hero3-max-width thq-section-max-width thq-flex-row">
               <div class="hero3-column">
@@ -499,7 +524,54 @@ session_start();
   </div>
   <script defer="" src="https://unpkg.com/@teleporthq/teleport-custom-scripts"></script>
 
+<script>
+  const track = document.querySelector('.slides-track');
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.s-dot');
+  let current = 0;
+  let timer;
 
+  function goTo(index) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (index + slides.length) % slides.length;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+
+  function next() { goTo(current + 1); }
+  function prev() { goTo(current - 1); }
+
+  function startAuto() {
+    timer = setInterval(next, 4000);
+  }
+
+  function resetAuto() {
+    clearInterval(timer);
+    startAuto();
+  }
+
+  // Buttons
+  document.querySelector('.s-next').addEventListener('click', () => { next(); resetAuto(); });
+  document.querySelector('.s-prev').addEventListener('click', () => { prev(); resetAuto(); });
+
+  // Dots
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => { goTo(i); resetAuto(); });
+  });
+
+  // Touch Support (Mobile)
+  let touchStartX = 0;
+  track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+  track.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (diff > 50) { next(); resetAuto(); }
+    else if (diff < -50) { prev(); resetAuto(); }
+  });
+
+  startAuto();
+</script>
 </body>
 
 </html>

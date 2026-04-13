@@ -5,7 +5,7 @@
    $oil=$_POST['fuel_cost'];
    $tcost=$_POST['total_cost'];
 
-   $conn=mysqli_connect('localhost:3307','root','','transportation_ms');
+   $conn=mysqli_connect('localhost','root','','transportation_ms');
    $sql="UPDATE bill SET id='$id',total_km='$fare',extra_cost='$other',fuel_cost='$fuel',total_cost='$tcost' WHERE id='$id'";
 
    if(mysqli_query($conn,$sql)){

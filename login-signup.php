@@ -3,7 +3,7 @@ session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Database connection parameters
-    $servername = "localhost:3307";
+    $servername = "localhost";
     $db_username = "root";
     $db_password = "";
     $dbname = "transportation_ms";
